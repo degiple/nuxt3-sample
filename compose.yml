@@ -1,0 +1,65 @@
+version: '3.9'
+
+x-common-settings: &common-settings
+  build: .
+  volumes:
+    - .:/frontend:cached
+    - nuxt-node-modules:/frontend/node_modules:delegated
+  tty: true
+
+services:
+  web:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '8080:8080'
+    depends_on:
+      - dev_nuxt
+      # - storybook
+
+  dev_nuxt:
+    container_name: dev_nuxt
+    <<: *common-settings
+    # ports:
+    #   - '3000:3000'
+    expose:
+      - 3000
+      - 24678
+      - 6006
+    command: >
+      sh -c "npm install && npm run dev"
+
+  # prod_nuxt:
+  #   container_name: prod_nuxt
+  #   <<: *common-settings
+  #   ports:
+  #     - '3001:3001'
+  #   environment:
+  #     - PORT=3001
+  #   command: >
+  #     sh -c `
+  #     npm install &&
+  #     npm run build &&
+  #     node ./.output/server/index.mjs
+  #     `
+
+  # storybook:
+  #   container_name: storybook
+  #   <<: *common-settings
+  #   ports:
+  #     - '6006:6006'
+  #   command: >
+  #     sh -c "npm install && npm run storybook"
+
+  # vitest:
+  #   container_name: vitest
+  #   <<: *common-settings
+  #   command: >
+  #     sh -c "npm install &&
+  #           npm run build &&
+  #           npm run test -- --exit"
+
+volumes:
+  nuxt-node-modules:
