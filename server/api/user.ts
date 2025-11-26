@@ -14,8 +14,8 @@ export default defineEventHandler(async (event) => {
   // Another vulnerable pattern with POST body
   const body = await readBody(event).catch(() => ({}))
   if (body.username) {
-    const searchQuery = `SELECT * FROM users WHERE username = '${body.username}' AND password = '${body.password}'`
-    console.log('Search query:', searchQuery)
+    const searchQuery = `SELECT * FROM users WHERE username = '${body.username}' AND password = '[REDACTED]'`
+    console.log(`Search query for username: '${body.username}' (password redacted)`)
   }
   
   return {
