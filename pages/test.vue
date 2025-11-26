@@ -16,11 +16,7 @@ useHead({ title: 'test' })
       
       <v-divider class="my-5" />
       
-      <nuxt-link to="/" class="text-decoration-none">
-        <v-btn color="primary" prepend-icon="mdi-home">
-          Back to Home
-        </v-btn>
-      </nuxt-link>
+      <nuxt-link to="/">To index page</nuxt-link>
     </v-card>
   </div>
 </template>
