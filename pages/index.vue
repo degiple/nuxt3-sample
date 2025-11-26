@@ -21,8 +21,8 @@ useHead({ title: 'index' })
         <module-counter class="mt-2 mb-8" />
         <nuxt-link to="/test"><p>To test page</p></nuxt-link>
         <nuxt-link to="/about"><p>To about page</p></nuxt-link>
-        <nuxt-link to="prohibited"><p>To prohibited page</p></nuxt-link>
-        <nuxt-link to="vulnerable"><p style="color: red;">⚠️ To vulnerable page (CodeQL test)</p></nuxt-link>
+        <nuxt-link to="/prohibited"><p>To prohibited page</p></nuxt-link>
+        <nuxt-link to="/vulnerable"><p style="color: red;">⚠️ To vulnerable page (CodeQL test)</p></nuxt-link>
       </div>
       <div class="flex-grow-1 d-flex align-center pl-5">
         <img src="/nuxt_logo.svg" style="width: 140px; height: 140px" />
